@@ -22,6 +22,13 @@ pipeline{
           }   
         }
         
+        stage ('Deploy kubernetes'){
+          steps{
+            withkubecofig([credentialsID: 'Kubeconfig']){
+                sh 'kubectl apply -f ./k8s/deployment.yaml'
+            }
+          }
+        }
     
    
    
